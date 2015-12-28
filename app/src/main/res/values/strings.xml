@@ -37,6 +37,11 @@
     <string name="today_weather_min">Min:</string>
     <string name="today_weather_humidity">Humidity:</string>
     <string name="today_weather_wind_speed">Wind:</string>
+    
+    <!-- Special symbols -->
+    <string name="celsius_sign">\u00B0</string>
+    <string name="percent_symbol">%</string>
+    <string name="meters_pes_second">\u0020m/s</string>
 
     <!-- Strings fpr weeks_forecast_fragment -->
     <string name="weeks_forecast_fragment_title">Week</string>

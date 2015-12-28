@@ -162,8 +162,6 @@ public class MainActivity extends BaseActivity
         if (preferences.getFacebookToken().equals("")) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
-        } else {
-            dataLoaderWeapon.loadWeatherData();
         }
     }
 
