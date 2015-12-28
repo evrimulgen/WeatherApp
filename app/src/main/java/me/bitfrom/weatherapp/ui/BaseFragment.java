@@ -42,6 +42,12 @@ abstract public class BaseFragment extends Fragment {
     protected String errorSomethingWentWrong;
     @BindString(R.string.error_network_isnt_available)
     protected String errorCheckNetwork;
+    @BindString(R.string.celsius_sign)
+    protected String celsiusSign;
+    @BindString(R.string.percent_symbol)
+    protected String percentSymbol;
+    @BindString(R.string.meters_pes_second)
+    protected String metersPerSecond;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
-import butterknife.BindString;
 import me.bitfrom.weatherapp.R;
 import me.bitfrom.weatherapp.ui.BaseFragment;
 import me.bitfrom.weatherapp.utils.NetworkStateChecker;
@@ -37,29 +36,11 @@ public class TodayWeatherFragment extends BaseFragment implements LoaderManager.
     @Bind(R.id.today_description)
     protected TextView todayDescription;
 
-    @BindString(R.string.celsius_sign)
-    protected String celsiusSign;
-    @BindString(R.string.percent_symbol)
-    protected String percentSymbol;
-    @BindString(R.string.meters_pes_second)
-    protected String metersPerSecond;
-
     private static final int TODAY_ITEM_LOADER = 0;
-
-    private static final String[] TODAY_PROJECTION = {
-            WeatherEntry.TABLE_NAME + "." + WeatherEntry._ID,
-            WeatherEntry.COLUMN_CITY,
-            WeatherEntry.COLUMN_DAYTEMPERATURE,
-            WeatherEntry.COLUMN_MAXTEMPERATURE,
-            WeatherEntry.COLUMN_MINTEMPERATURE,
-            WeatherEntry.COLUMN_HUMIDITY,
-            WeatherEntry.COLUMN_WINDSPEED,
-            WeatherEntry.COLUMN_DESCRIPTION
-    };
 
     @Override
     protected int getContentView() {
-        return R.layout.todays_weather_fragment;
+        return R.layout.today_weather_fragment;
     }
 
     @Override
@@ -85,7 +66,7 @@ public class TodayWeatherFragment extends BaseFragment implements LoaderManager.
         Uri baseUri = WeatherEntry.CONTENT_URI;
         baseUri = baseUri.buildUpon().appendQueryParameter("limit", "1").build();
 
-        return new CursorLoader(getActivity(), baseUri, TODAY_PROJECTION, null, null, null);
+        return new CursorLoader(getActivity(), baseUri, WeatherEntry.PROJECTION, null, null, null);
     }
 
     @Override

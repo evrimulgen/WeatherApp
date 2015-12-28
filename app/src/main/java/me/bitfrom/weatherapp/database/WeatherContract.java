@@ -50,6 +50,17 @@ public class WeatherContract {
         //Need this for caching data
         public static final String COLUMN_CURRENT_DATESTAMP = "current_date_stamp";
 
+        public static final String[] PROJECTION = {
+                TABLE_NAME + "." + _ID,
+                COLUMN_CITY,
+                COLUMN_DAYTEMPERATURE,
+                COLUMN_MAXTEMPERATURE,
+                COLUMN_MINTEMPERATURE,
+                COLUMN_HUMIDITY,
+                COLUMN_WINDSPEED,
+                COLUMN_DESCRIPTION
+        };
+
         public static Uri buildHamstersUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }

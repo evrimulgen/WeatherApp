@@ -30,8 +30,9 @@
     <!-- Strings for displaying errors -->
     <string name="error_something_went_wrong">Something went wrong. Try again later.</string>
     <string name="error_network_isnt_available">Check your network connection!</string>
+    <string name="empty_forecast_list">No Weather Information Available :(</string>
 
-    <!-- Strings for todays_weather_fragment -->
+    <!-- Strings for today_weather_fragment -->
     <string name="today_weather_fragment_title">Today</string>
     <string name="today_weather_max">Max:</string>
     <string name="today_weather_min">Min:</string>
@@ -43,9 +44,13 @@
     <string name="percent_symbol">%</string>
     <string name="meters_pes_second">\u0020m/s</string>
 
-    <!-- Strings fpr weeks_forecast_fragment -->
+    <!-- Strings for weeks_forecast_fragment -->
     <string name="weeks_forecast_fragment_title">Week</string>
-
+    <string name="week_weather_date_lbl">Date:</string>
+    <string name="week_weather_max">Max:</string>
+    <string name="week_weather_min">Min:</string>
+    <string name="week_weather_humidity">Humidity:</string>
+    <string name="week_weather_wind_speed">Wind:</string>
 
     <!-- Strings for fragment_about -->
     <string name="about_fragment_title">About</string>
