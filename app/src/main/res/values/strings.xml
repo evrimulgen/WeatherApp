@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Account type (for sync-adapter authenticator) -->
+    <!-- SyncAdapter related -->
+    <string name="sync_account_type">weatherapp.bitfrom.me</string>
+    <string name="content_authority">me.bitfrom.weatherapp</string>
+
+    <string name="facebook_app_id">1535702916748100</string>
+
+    <!-- General strings -->
+    <string name="action_dismiss_snackbar">Dismiss</string>
+
+    <!-- LoginActivity strings -->
+    <string name="activity_login_welcome">Welcome! Please, login.</string>
+    <string name="activity_login_cancel_message">You have to login.</string>
+
+    <!-- Strings for displaying errors -->
+    <string name="error_something_went_wrong">Something went wrong. Try again later.</string>
+    <string name="error_network_isnt_available">Check your network connection!</string>
+
+</resources>

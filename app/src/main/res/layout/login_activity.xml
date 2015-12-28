@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_login_root_layout">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/activity_login_welcome_msg_size"
+        android:text="@string/activity_login_welcome"/>
+
+    <com.facebook.login.widget.LoginButton
+        android:layout_width="@dimen/activity_login_button_width"
+        android:layout_height="@dimen/activity_login_button_height"
+        android:id="@+id/login_button"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginTop="@dimen/activity_login_button_margin_top"/>
+
+</LinearLayout>
