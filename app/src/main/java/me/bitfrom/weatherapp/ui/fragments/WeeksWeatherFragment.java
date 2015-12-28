@@ -7,6 +7,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -57,6 +58,7 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
         super.onViewCreated(view, savedInstanceState);
 
         initRecyclerView();
+        initSwipeToRefresh();
     }
 
     @Override
@@ -76,6 +78,7 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         recyclerViewAdapter.swapCursor(data);
         updateEmptyView();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -97,9 +100,26 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
         weatherForecast.setAdapter(recyclerViewAdapter);
     }
 
-    /**
-     * If hamsters list is empty, show a message.
-     * **/
+    /***
+     * Updates our weather forecast using swipe to refresh mechanism
+     ***/
+    private void initSwipeToRefresh() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (NetworkStateChecker.isNetworkAvailable(getActivity())) {
+                    dataLoaderWeapon.loadWeatherData();
+                } else {
+                    messageHandlerUtility.showMessage(relativeLayout, errorCheckNetwork,
+                            Snackbar.LENGTH_LONG);
+                }
+            }
+        });
+    }
+
+    /***
+     * If forecast list list is empty, show a message.
+     ***/
     private void updateEmptyView() {
         if (recyclerViewAdapter.getCount() == 0) {
             TextView emptyView = (TextView) getView().findViewById(R.id.forecast_list_empty);

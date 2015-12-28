@@ -2,8 +2,8 @@ package me.bitfrom.weatherapp.ui.fragments;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.NestedScrollView;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
@@ -13,7 +13,7 @@ import me.bitfrom.weatherapp.ui.BaseFragment;
 public class AboutFragment extends BaseFragment {
 
     @Bind(R.id.about_container)
-    protected LinearLayout linearLayout;
+    protected NestedScrollView nestedScrollView;
 
     @Bind(R.id.smile)
     protected TextView smile;
@@ -34,7 +34,7 @@ public class AboutFragment extends BaseFragment {
         smile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Snackbar snackbar = Snackbar.make(linearLayout,
+                final Snackbar snackbar = Snackbar.make(nestedScrollView,
                         R.string.about_developer_name, Snackbar.LENGTH_LONG);
                 snackbar.setAction(R.string.about_snack_okay, new View.OnClickListener() {
                     @Override

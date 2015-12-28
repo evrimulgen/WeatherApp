@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.widget.LinearLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.widget.TextView;
 
 import butterknife.Bind;
@@ -20,7 +20,7 @@ import static me.bitfrom.weatherapp.database.WeatherContract.WeatherEntry;
 public class TodayWeatherFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     @Bind(R.id.today_container)
-    protected LinearLayout linearLayout;
+    protected NestedScrollView nestedScrollView;
     @Bind(R.id.today_city)
     protected TextView todayCity;
     @Bind(R.id.today_day_temp)
@@ -47,12 +47,6 @@ public class TodayWeatherFragment extends BaseFragment implements LoaderManager.
     public void onActivityCreated(Bundle savedInstanceState) {
         getLoaderManager().initLoader(TODAY_ITEM_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void onStop() {
-        dataLoaderWeapon.hideWeapon();
-        super.onStop();
     }
 
     @Override
@@ -103,7 +97,7 @@ public class TodayWeatherFragment extends BaseFragment implements LoaderManager.
         if (NetworkStateChecker.isNetworkAvailable(getActivity())) {
             dataLoaderWeapon.loadWeatherData();
         } else {
-            messageHandlerUtility.showMessage(linearLayout, errorCheckNetwork, Snackbar.LENGTH_LONG);
+            messageHandlerUtility.showMessage(nestedScrollView, errorCheckNetwork, Snackbar.LENGTH_LONG);
         }
     }
 }
