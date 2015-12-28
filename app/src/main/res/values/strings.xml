@@ -23,6 +23,11 @@
     <!-- General strings -->
     <string name="action_dismiss_snackbar">Dismiss</string>
 
+    <!-- MainActivity strings -->
+    <string name="dialog_logout_message">,\u0020you want to logout?</string>
+    <string name="dialog_logout_yes">Yes</string>
+    <string name="dialog_logout_no">No</string>
+
     <!-- LoginActivity strings -->
     <string name="activity_login_welcome">Welcome! Please, login.</string>
     <string name="activity_login_cancel_message">You have to login.</string>

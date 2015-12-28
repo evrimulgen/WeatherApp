@@ -34,6 +34,7 @@
             android:name=".database.WeatherProvider"
             android:exported="false"
             android:syncable="true"/>
+        <service android:name=".utils.ServiceCacheCleaner"/>
     </application>
 
 </manifest>

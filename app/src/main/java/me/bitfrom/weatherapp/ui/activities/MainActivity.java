@@ -3,12 +3,14 @@ package me.bitfrom.weatherapp.ui.activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,8 +19,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.facebook.login.LoginManager;
 
 import butterknife.Bind;
+import butterknife.BindString;
 import me.bitfrom.weatherapp.R;
 import me.bitfrom.weatherapp.ui.BaseActivity;
 import me.bitfrom.weatherapp.ui.fragments.AboutFragment;
@@ -26,6 +30,7 @@ import me.bitfrom.weatherapp.ui.fragments.SettingsFragment;
 import me.bitfrom.weatherapp.ui.fragments.TodayWeatherFragment;
 import me.bitfrom.weatherapp.ui.fragments.WeeksWeatherFragment;
 import me.bitfrom.weatherapp.utils.CircleTransform;
+import me.bitfrom.weatherapp.utils.ServiceCacheCleaner;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +41,12 @@ public class MainActivity extends BaseActivity
     protected DrawerLayout drawer;
     @Bind(R.id.nav_view)
     protected NavigationView navigationView;
+    @BindString(R.string.dialog_logout_message)
+    protected String logoutMessage;
+    @BindString(R.string.dialog_logout_yes)
+    protected String logoutYes;
+    @BindString(R.string.dialog_logout_no)
+    protected String logoutNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +106,10 @@ public class MainActivity extends BaseActivity
             case R.id.nav_settings:
                 SettingsFragment sf = new SettingsFragment();
                 replaceFragment(sf);
+                break;
+            case R.id.nav_logout:
+                logout();
+                break;
             default:
                 TodayWeatherFragment twf = new TodayWeatherFragment();
                 replaceFragment(twf);
@@ -183,5 +198,38 @@ public class MainActivity extends BaseActivity
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .transform(new CircleTransform(this))
                 .into(userAvatar);
+    }
+
+    private void logout() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage(preferences.getUserCredentials() + logoutMessage);
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                logoutYes,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        startService(new Intent(getBaseContext(), ServiceCacheCleaner.class));
+                        Glide.get(getBaseContext()).clearMemory();
+                        preferences.setFacebookToken("");
+                        preferences.setUserCredentials("");
+                        preferences.setUserEmail("");
+                        preferences.setUserPictureUrl("");
+                        LoginManager.getInstance().logOut();
+                        startActivity(new Intent(getBaseContext(), LoginActivity.class));
+                        finish();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                logoutNo,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }
