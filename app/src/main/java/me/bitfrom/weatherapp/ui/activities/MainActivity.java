@@ -145,10 +145,13 @@ public class MainActivity extends BaseActivity
 
         if (fragmentClassName.equals(TodaysWeatherFragment.class.getName())) {
             setTitle(getString(R.string.todays_weather_fragment_title));
+            navigationView.setCheckedItem(R.id.nav_todays_forecast);
         } else if (fragmentClassName.equals(WeeksWeatherFragment.class.getName())) {
             setTitle(getString(R.string.weeks_forecast_fragment_title));
+            navigationView.setCheckedItem(R.id.nav_weeks_forecast);
         } else if (fragmentClassName.equals(AboutFragment.class.getName())) {
             setTitle(getString(R.string.about_fragment_title));
+            navigationView.setCheckedItem(R.id.nav_about);
         }
     }
 
