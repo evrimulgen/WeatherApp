@@ -84,19 +84,12 @@ public class TodayWeatherFragment extends BaseFragment implements LoaderManager.
      ***/
     private void setWeatherInfo(Cursor data) {
         if (data != null && data.moveToFirst()) {
-
-            String dayTemp = data.getString(data.getColumnIndex(WeatherEntry.COLUMN_DAYTEMPERATURE)) + celsiusSign;
-            String maxTemp = data.getString(data.getColumnIndex(WeatherEntry.COLUMN_MAXTEMPERATURE)) + celsiusSign;
-            String minTemp = data.getString(data.getColumnIndex(WeatherEntry.COLUMN_MINTEMPERATURE)) + celsiusSign;
-            String humidity = data.getString(data.getColumnIndex(WeatherEntry.COLUMN_HUMIDITY)) + percentSymbol;
-            String windSpeed = data.getString(data.getColumnIndex(WeatherEntry.COLUMN_WINDSPEED)) + metersPerSecond;
-
             todayCity.setText(data.getString(data.getColumnIndex(WeatherEntry.COLUMN_CITY)));
-            todayDayTemp.setText(dayTemp);
-            todayMaxTemp.setText(maxTemp);
-            todayMinTemp.setText(minTemp);
-            todayHumidity.setText(humidity);
-            todayWindSpeed.setText(windSpeed);
+            todayDayTemp.setText(data.getString(data.getColumnIndex(WeatherEntry.COLUMN_DAYTEMPERATURE)));
+            todayMaxTemp.setText(data.getString(data.getColumnIndex(WeatherEntry.COLUMN_MAXTEMPERATURE)));
+            todayMinTemp.setText(data.getString(data.getColumnIndex(WeatherEntry.COLUMN_MINTEMPERATURE)));
+            todayHumidity.setText(data.getString(data.getColumnIndex(WeatherEntry.COLUMN_HUMIDITY)));
+            todayWindSpeed.setText(data.getString(data.getColumnIndex(WeatherEntry.COLUMN_WINDSPEED)));
             todayDescription.setText(data.getString(data.getColumnIndex(WeatherEntry.COLUMN_DESCRIPTION)));
         } else {
             loadData();

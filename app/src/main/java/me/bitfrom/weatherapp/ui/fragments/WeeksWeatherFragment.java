@@ -8,12 +8,20 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
 import me.bitfrom.weatherapp.R;
 import me.bitfrom.weatherapp.ui.BaseFragment;
+import me.bitfrom.weatherapp.ui.recyclerview.DividerItemDecoration;
+import me.bitfrom.weatherapp.ui.recyclerview.EmptyRecyclerView;
+import me.bitfrom.weatherapp.ui.recyclerview.ForecastRVAdapter;
+import me.bitfrom.weatherapp.utils.NetworkStateChecker;
 
 import static me.bitfrom.weatherapp.database.WeatherContract.WeatherEntry;
 
@@ -23,24 +31,15 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
     protected RelativeLayout relativeLayout;
     @Bind(R.id.swipeRefreshLayout)
     protected SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.weather_forecast)
+    protected EmptyRecyclerView weatherForecast;
     @Bind(R.id.forecast_list_empty)
     protected TextView emptyView;
-    @Bind(R.id.week_date_stamp)
-    protected TextView dateStamp;
-    @Bind(R.id.week_day_temp)
-    protected TextView dayTemp;
-    @Bind(R.id.week_max_temp)
-    protected TextView maxTemp;
-    @Bind(R.id.week_min_temp)
-    protected TextView minTemp;
-    @Bind(R.id.week_humidity)
-    protected TextView humidity;
-    @Bind(R.id.week_wind_speed)
-    protected TextView windSpeed;
-    @Bind(R.id.week_description)
-    protected TextView description;
+
 
     private static final int FORECAST_LOADER = 1;
+    private ForecastRVAdapter recyclerViewAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected int getContentView() {
@@ -51,6 +50,13 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
     public void onActivityCreated(Bundle savedInstanceState) {
         getLoaderManager().initLoader(FORECAST_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        initRecyclerView();
     }
 
     @Override
@@ -68,7 +74,8 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
+        recyclerViewAdapter.swapCursor(data);
+        updateEmptyView();
     }
 
     @Override
@@ -76,5 +83,33 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
 
     }
 
+    /***
+     * Init our RecyclerView and set some decorations on it
+     ***/
+    private void initRecyclerView() {
+        weatherForecast.addItemDecoration(new DividerItemDecoration(getActivity(), null));
+        layoutManager = new LinearLayoutManager(getActivity());
+        weatherForecast.setLayoutManager(layoutManager);
+        weatherForecast.setItemAnimator(new DefaultItemAnimator());
 
+        recyclerViewAdapter = new ForecastRVAdapter(getActivity(), null, 0);
+        weatherForecast.setEmptyView(emptyView);
+        weatherForecast.setAdapter(recyclerViewAdapter);
+    }
+
+    /**
+     * If hamsters list is empty, show a message.
+     * **/
+    private void updateEmptyView() {
+        if (recyclerViewAdapter.getCount() == 0) {
+            TextView emptyView = (TextView) getView().findViewById(R.id.forecast_list_empty);
+            if (null != emptyView) {
+                String message = getString(R.string.empty_forecast_list);
+                if (! NetworkStateChecker.isNetworkAvailable(getActivity())) {
+                    message = getString(R.string.error_network_isnt_available);
+                }
+                emptyView.setText(message);
+            }
+        }
+    }
 }
