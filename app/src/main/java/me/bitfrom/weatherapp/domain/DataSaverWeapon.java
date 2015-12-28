@@ -3,11 +3,11 @@ package me.bitfrom.weatherapp.domain;
 import android.content.ContentValues;
 import android.content.Context;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -93,9 +93,9 @@ public class DataSaverWeapon {
      * We need to show date in human readable format
      ***/
     private String normalizeDate(long dateStamp) {
-        Date dateObj = new Date(dateStamp);
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        long dv = dateStamp * 1000;// its need to be in millisecond
+        Date df = new java.util.Date(dv);
 
-        return df.format(dateObj);
+        return new SimpleDateFormat("dd-MM-yyyy", Locale.US).format(df);
     }
 }
