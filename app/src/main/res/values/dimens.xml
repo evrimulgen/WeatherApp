@@ -20,4 +20,14 @@
     <dimen name="header_avatar_sizes">64dp</dimen>
     <dimen name="header_avatar_elevation">4dp</dimen>
     <dimen name="header_spacing_large">16dp</dimen>
+
+    <!-- Dimens for about_about -->
+    <dimen name="about_card_margin">16dp</dimen>
+    <dimen name="about_hamster_width">150dp</dimen>
+    <dimen name="about_hamster_height">200dp</dimen>
+    <dimen name="about_hamster_margin_top">20dp</dimen>
+    <dimen name="about_description_padding">25dp</dimen>
+    <dimen name="about_description_text_size">16sp</dimen>
+    <dimen name="about_smile_text_size">20sp</dimen>
+    <dimen name="about_smile_margin_bottom">10dp</dimen>
 </resources>

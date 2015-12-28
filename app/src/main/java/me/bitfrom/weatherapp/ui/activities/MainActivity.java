@@ -1,5 +1,8 @@
 package me.bitfrom.weatherapp.ui.activities;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -19,6 +22,7 @@ import butterknife.Bind;
 import me.bitfrom.weatherapp.R;
 import me.bitfrom.weatherapp.ui.BaseActivity;
 import me.bitfrom.weatherapp.ui.fragments.AboutFragment;
+import me.bitfrom.weatherapp.ui.fragments.SettingsFragment;
 import me.bitfrom.weatherapp.ui.fragments.TodaysWeatherFragment;
 import me.bitfrom.weatherapp.ui.fragments.WeeksWeatherFragment;
 import me.bitfrom.weatherapp.utils.CircleTransform;
@@ -42,6 +46,20 @@ public class MainActivity extends BaseActivity
         setupDrawer();
 
         checkIfUserLogged();
+
+        if (savedInstanceState == null) {
+            replaceFragment(new TodaysWeatherFragment());
+        }
+
+        getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                Fragment f = getFragmentManager().findFragmentById(R.id.main_container);
+                if (f != null) {
+                    updateToolbarTitle(f);
+                }
+            }
+        });
     }
 
     @Override
@@ -54,6 +72,8 @@ public class MainActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (getFragmentManager().getBackStackEntryCount() > 1) {
+            getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
@@ -63,24 +83,21 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-            getFragmentManager().beginTransaction().replace(R.id.main_container,
-                    new TodaysWeatherFragment()).addToBackStack(null).commit();
-        } else if (id == R.id.nav_gallery) {
-            getFragmentManager().beginTransaction().replace(R.id.main_container,
-                    new WeeksWeatherFragment()).addToBackStack(null).commit();
-        } else if (id == R.id.nav_slideshow) {
-            getFragmentManager().beginTransaction().replace(R.id.main_container,
-                    new AboutFragment()).addToBackStack(null).commit();
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (item.getItemId()) {
+            case R.id.nav_weeks_forecast:
+                WeeksWeatherFragment wwf = new WeeksWeatherFragment();
+                replaceFragment(wwf);
+                break;
+            case R.id.nav_about:
+                AboutFragment af = new AboutFragment();
+                replaceFragment(af);
+                break;
+            case R.id.nav_settings:
+                SettingsFragment sf = new SettingsFragment();
+                replaceFragment(sf);
+            default:
+                TodaysWeatherFragment twf = new TodaysWeatherFragment();
+                replaceFragment(twf);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -102,6 +119,42 @@ public class MainActivity extends BaseActivity
         loadUserInfo(navigationView);
     }
 
+    /***
+     * For managing fragments transaction
+     ***/
+    private void replaceFragment(Fragment fragment) {
+        String backStateName =  fragment.getClass().getName();
+
+        FragmentManager manager = getFragmentManager();
+        boolean fragmentPopped = manager.popBackStackImmediate (backStateName, 0);
+
+        if (!fragmentPopped && manager.findFragmentByTag(backStateName) == null){
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.main_container, fragment, backStateName);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.addToBackStack(backStateName);
+            ft.commit();
+        }
+    }
+
+    /***
+     * Updates toolbar title
+     ***/
+    private void updateToolbarTitle(Fragment fragment){
+        String fragmentClassName = fragment.getClass().getName();
+
+        if (fragmentClassName.equals(TodaysWeatherFragment.class.getName())) {
+            setTitle(getString(R.string.todays_weather_fragment_title));
+        } else if (fragmentClassName.equals(WeeksWeatherFragment.class.getName())) {
+            setTitle(getString(R.string.weeks_forecast_fragment_title));
+        } else if (fragmentClassName.equals(AboutFragment.class.getName())) {
+            setTitle(getString(R.string.about_fragment_title));
+        }
+    }
+
+    /***
+     * If user isn't logged starts LoginActivity
+     ***/
     private void checkIfUserLogged() {
         if (preferences.getFacebookToken().equals("")) {
             startActivity(new Intent(this, LoginActivity.class));
@@ -114,14 +167,14 @@ public class MainActivity extends BaseActivity
      ***/
     private void loadUserInfo(NavigationView navigationView) {
         View header = navigationView.getHeaderView(0);
-
+        //Find
         TextView userCredentials = (TextView) header.findViewById(R.id.user_credentials);
         TextView userEmail = (TextView) header.findViewById(R.id.user_email);
         ImageView userAvatar = (ImageView) header.findViewById(R.id.user_avatar);
-
+        //Set
         userCredentials.setText(preferences.getUserCredentials());
         userEmail.setText(preferences.getUserEmail());
-
+        //Load
         Glide.with(this)
                 .load(preferences.getUserPictureUrl())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
