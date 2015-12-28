@@ -11,7 +11,7 @@ import butterknife.Bind;
 import me.bitfrom.weatherapp.R;
 import me.bitfrom.weatherapp.ui.BaseFragment;
 
-public class TodaysWeatherFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class TodayWeatherFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     @Bind(R.id.todays_container)
     protected LinearLayout linearLayout;

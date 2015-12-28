@@ -20,7 +20,6 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dataLoaderWeapon.loadWeatherData();
     }
 
     @Override
@@ -36,11 +35,5 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        dataLoaderWeapon.hideWeapon();
     }
 }

@@ -33,6 +33,8 @@ public class WeatherContract {
 
         public static final String COLUMN_DATESTAMP = "date_stamp";
 
+        public static final String COLUMN_CITY = "city";
+
         public static final String COLUMN_DAYTEMPERATURE = "day_temperature";
 
         public static final String COLUMN_MAXTEMPERATURE = "max_temperature";

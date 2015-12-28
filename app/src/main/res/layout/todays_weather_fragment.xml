@@ -5,10 +5,110 @@
     android:layout_height="match_parent"
     android:id="@+id/todays_container">
 
-    <TextView
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal|center_vertical"
-        android:textSize="22sp"
-        android:text="Todays"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/today_weather_card"
+        android:elevation="@dimen/today_card_elevation">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/today_city"
+                android:gravity="start"
+                android:padding="@dimen/today_city_padding"
+                android:textSize="@dimen/today_city_text_size"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/today_day_temp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/today_day_temp_margin_top"
+                android:textStyle="bold"
+                android:textSize="@dimen/today_day_temp_text_size"
+                android:typeface="sans"/>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/today_table_margin_top"
+                android:layout_marginLeft="@dimen/today_table_margin_8"
+                android:layout_marginRight="@dimen/today_table_margin_8"
+                android:stretchColumns="0,1,2"
+                android:gravity="center">
+                <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/today_max_temp_lbl"
+                    android:layout_margin="@dimen/today_other_details_margin"
+                    android:textSize="@dimen/today_other_details_text_size"
+                    android:text="@string/today_weather_max"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/today_max_temp"
+                    android:textSize="@dimen/today_other_details_text_size"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/today_min_temp_lbl"
+                    android:layout_margin="@dimen/today_other_details_margin"
+                    android:textSize="@dimen/today_other_details_text_size"
+                    android:text="@string/today_weather_min"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/today_min_temp"
+                    android:textSize="@dimen/today_other_details_text_size"
+                    android:textStyle="bold"/>
+                </TableRow>
+                <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/today_humidity_lbl"
+                    android:layout_margin="@dimen/today_other_details_margin"
+                    android:textSize="@dimen/today_other_details_text_size"
+                    android:text="@string/today_weather_humidity"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/today_humidity"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/today_other_details_text_size"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/today_wind_speed_lbl"
+                    android:layout_margin="@dimen/today_other_details_margin"
+                    android:textSize="@dimen/today_other_details_text_size"
+                    android:text="@string/today_weather_wind_speed"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/today_wind_speed"
+                    android:textSize="@dimen/today_other_details_text_size"
+                    android:textStyle="bold"/>
+                </TableRow>
+            </TableLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/today_description"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/today_description_margin"
+                android:textSize="@dimen/today_description_text_size"
+                android:textStyle="bold"
+                android:typeface="sans"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>

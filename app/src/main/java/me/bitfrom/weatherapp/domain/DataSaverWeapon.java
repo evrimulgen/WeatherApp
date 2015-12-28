@@ -41,6 +41,7 @@ public class DataSaverWeapon {
             ContentValues weatherValues = new ContentValues();
 
             weatherValues.put(WeatherEntry.COLUMN_DATESTAMP, weatherModel.getList().get(i).getDt());
+            weatherValues.put(WeatherEntry.COLUMN_CITY, weatherModel.getCity().getName());
             weatherValues.put(WeatherEntry.COLUMN_DAYTEMPERATURE, weatherModel.getList().get(i).getTemp().getDay());
             weatherValues.put(WeatherEntry.COLUMN_MAXTEMPERATURE, weatherModel.getList().get(i).getTemp().getMax());
             weatherValues.put(WeatherEntry.COLUMN_MINTEMPERATURE, weatherModel.getList().get(i).getTemp().getMin());

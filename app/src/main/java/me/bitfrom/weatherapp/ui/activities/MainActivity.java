@@ -23,7 +23,7 @@ import me.bitfrom.weatherapp.R;
 import me.bitfrom.weatherapp.ui.BaseActivity;
 import me.bitfrom.weatherapp.ui.fragments.AboutFragment;
 import me.bitfrom.weatherapp.ui.fragments.SettingsFragment;
-import me.bitfrom.weatherapp.ui.fragments.TodaysWeatherFragment;
+import me.bitfrom.weatherapp.ui.fragments.TodayWeatherFragment;
 import me.bitfrom.weatherapp.ui.fragments.WeeksWeatherFragment;
 import me.bitfrom.weatherapp.utils.CircleTransform;
 
@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity
         checkIfUserLogged();
 
         if (savedInstanceState == null) {
-            replaceFragment(new TodaysWeatherFragment());
+            replaceFragment(new TodayWeatherFragment());
         }
 
         getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity
                 SettingsFragment sf = new SettingsFragment();
                 replaceFragment(sf);
             default:
-                TodaysWeatherFragment twf = new TodaysWeatherFragment();
+                TodayWeatherFragment twf = new TodayWeatherFragment();
                 replaceFragment(twf);
         }
 
@@ -143,8 +143,8 @@ public class MainActivity extends BaseActivity
     private void updateToolbarTitle(Fragment fragment){
         String fragmentClassName = fragment.getClass().getName();
 
-        if (fragmentClassName.equals(TodaysWeatherFragment.class.getName())) {
-            setTitle(getString(R.string.todays_weather_fragment_title));
+        if (fragmentClassName.equals(TodayWeatherFragment.class.getName())) {
+            setTitle(getString(R.string.today_weather_fragment_title));
             navigationView.setCheckedItem(R.id.nav_todays_forecast);
         } else if (fragmentClassName.equals(WeeksWeatherFragment.class.getName())) {
             setTitle(getString(R.string.weeks_forecast_fragment_title));
@@ -162,6 +162,8 @@ public class MainActivity extends BaseActivity
         if (preferences.getFacebookToken().equals("")) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
+        } else {
+            dataLoaderWeapon.loadWeatherData();
         }
     }
 
