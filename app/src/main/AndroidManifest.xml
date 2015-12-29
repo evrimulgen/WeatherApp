@@ -32,8 +32,10 @@
         <provider
             android:authorities="@string/content_authority"
             android:name=".database.WeatherProvider"
+            android:process=":remote"
             android:exported="false"
             android:syncable="true"/>
+        <service android:name=".utils.ServiceCacheCleaner"/>
     </application>
 
 </manifest>

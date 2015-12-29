@@ -62,6 +62,12 @@ abstract public class BaseFragment extends Fragment {
     abstract protected int getContentView();
 
     @Override
+    public void onStop() {
+        dataLoaderWeapon.hideWeapon();
+        super.onStop();
+    }
+
+    @Override
     public void onDestroyView() {
         ButterKnife.unbind(this);
         super.onDestroyView();

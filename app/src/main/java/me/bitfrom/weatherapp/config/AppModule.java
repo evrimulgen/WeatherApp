@@ -17,6 +17,7 @@ import me.bitfrom.weatherapp.BuildConfig;
 import me.bitfrom.weatherapp.constants.RequestsKeeper;
 import me.bitfrom.weatherapp.domain.DataLoaderWeapon;
 import me.bitfrom.weatherapp.domain.DataSaverWeapon;
+import me.bitfrom.weatherapp.domain.NotificationWeapon;
 import me.bitfrom.weatherapp.network.WeatherLoadService;
 import me.bitfrom.weatherapp.network.rest.OpenWeatherAPI;
 import me.bitfrom.weatherapp.utils.ApplicationPreferences;
@@ -98,5 +99,11 @@ public class AppModule {
     @Singleton
     public DataLoaderWeapon providesDataLoaderWeapon() {
         return new DataLoaderWeapon();
+    }
+
+    @Provides
+    @Singleton
+    public NotificationWeapon providesNotificationWeapon() {
+        return new NotificationWeapon();
     }
 }

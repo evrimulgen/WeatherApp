@@ -20,4 +20,44 @@
     <dimen name="header_avatar_sizes">64dp</dimen>
     <dimen name="header_avatar_elevation">4dp</dimen>
     <dimen name="header_spacing_large">16dp</dimen>
+
+    <!-- Dimens for today_weather_fragment -->
+    <dimen name="today_card_margin">8dp</dimen>
+    <dimen name="today_card_elevation">4dp</dimen>
+    <dimen name="today_city_padding">16dp</dimen>
+    <dimen name="today_city_text_size">42sp</dimen>
+    <dimen name="today_day_temp_text_size">62sp</dimen>
+    <dimen name="today_day_temp_margin_top">30dp</dimen>
+    <dimen name="today_table_margin_top">30dp</dimen>
+    <dimen name="today_table_margin_8">8dp</dimen>
+    <dimen name="today_other_details_text_size">18sp</dimen>
+    <dimen name="today_other_details_margin">4sp</dimen>
+    <dimen name="today_description_text_size">22sp</dimen>
+    <dimen name="today_description_margin">24dp</dimen>
+
+    <!-- Dimens for today_weather_fragment -->
+    <dimen name="week_date_padding">8dp</dimen>
+    <dimen name="week_date_text_size">22sp</dimen>
+    <dimen name="week_day_temp_text_size">26sp</dimen>
+    <dimen name="week_day_temp_margin_top">15dp</dimen>
+    <dimen name="week_table_margin_top">15dp</dimen>
+    <dimen name="week_table_margin_8">8dp</dimen>
+    <dimen name="week_other_details_text_size">14sp</dimen>
+    <dimen name="week_other_details_margin">4sp</dimen>
+    <dimen name="week_description_text_size">16sp</dimen>
+    <dimen name="week_description_margin">16dp</dimen>
+
+    <!-- Dimens for the random_films_fragment -->
+    <dimen name="week_empty_text_padding">16dp</dimen>
+    <dimen name="week_empty_text_size">20sp</dimen>
+
+    <!-- Dimens for about_about -->
+    <dimen name="about_card_margin">16dp</dimen>
+    <dimen name="about_hamster_width">150dp</dimen>
+    <dimen name="about_hamster_height">200dp</dimen>
+    <dimen name="about_hamster_margin_top">20dp</dimen>
+    <dimen name="about_description_padding">15dp</dimen>
+    <dimen name="about_description_text_size">16sp</dimen>
+    <dimen name="about_smile_text_size">20sp</dimen>
+    <dimen name="about_smile_margin_bottom">10dp</dimen>
 </resources>

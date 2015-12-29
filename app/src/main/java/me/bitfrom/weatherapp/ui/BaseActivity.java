@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 import me.bitfrom.weatherapp.R;
 import me.bitfrom.weatherapp.WeatherApplication;
 import me.bitfrom.weatherapp.constants.ConstantsManager;
+import me.bitfrom.weatherapp.domain.DataLoaderWeapon;
 import me.bitfrom.weatherapp.utils.ApplicationPreferences;
 import me.bitfrom.weatherapp.utils.MessageHandlerUtility;
 import timber.log.Timber;
@@ -26,6 +27,9 @@ abstract public class BaseActivity extends AppCompatActivity{
 
     @Inject
     protected MessageHandlerUtility messageHandlerUtility;
+
+    @Inject
+    protected DataLoaderWeapon dataLoaderWeapon;
 
     @BindString(R.string.error_something_went_wrong)
     protected String errorSomethingWentWrong;

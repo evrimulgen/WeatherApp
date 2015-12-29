@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/weeks_container">
+    android:id="@+id/week_forecast_container">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <me.bitfrom.weatherapp.ui.recyclerview.EmptyRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weather_forecast"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <!-- Empty list -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/forecast_list_empty"
         android:gravity="center_horizontal|center_vertical"
-        android:textSize="22sp"
-        android:text="Weeks"/>
-</LinearLayout>
+        android:paddingLeft="@dimen/week_empty_text_padding"
+        android:paddingRight="@dimen/week_empty_text_padding"
+        android:paddingTop="@dimen/week_empty_text_padding"
+        android:paddingBottom="@dimen/week_empty_text_padding"
+        android:text="@string/empty_forecast_list"
+        android:textSize="@dimen/week_empty_text_size"
+        android:textStyle="bold|italic"/>
+
+</RelativeLayout>

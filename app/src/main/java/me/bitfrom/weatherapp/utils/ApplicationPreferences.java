@@ -17,6 +17,10 @@ public class ApplicationPreferences {
         this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
+    public SharedPreferences getPreferences() {
+        return preferences;
+    }
+
     public void setFacebookToken(String fbToken) {
         preferences.edit().putString(ConstantsManager.FB_TOKEN, fbToken).apply();
     }

@@ -3,35 +3,33 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import"
+            android:id="@+id/nav_todays_forecast"
+            android:icon="@drawable/ic_today_24dp"
+            android:title="@string/drawer_item_today"
             android:checked="true"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_weeks_forecast"
+            android:icon="@drawable/ic_filter_7_24dp"
+            android:title="@string/drawer_item_week" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_insert_emoticon_24dp"
+            android:title="@string/drawer_item_about" />
     </group>
 
-    <item android:title="Communicate">
+    <group android:checkableBehavior="single">
+    <item android:title="@string/drawer_category">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings_24dp"
+                android:title="@string/drawer_item_settings" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_exit_to_app_24dp"
+                android:title="@string/drawer_item_logout" />
         </menu>
     </item>
+    </group>
 
 </menu>

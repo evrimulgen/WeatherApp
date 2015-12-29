@@ -29,6 +29,10 @@ public class ConstantsManager {
 
     public static final String DEFAULT_UNITS = "metric";
 
-    public static final String DEFAULT_DAYS = "8";
+    public static final String DEFAULT_DAYS = "7";
+
+    public static final String APP_HASHTAG = "#WeatherApp";
+
+    public static final int NOTIFICATION_ID = 1024;
 
 }
