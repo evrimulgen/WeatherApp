@@ -22,6 +22,7 @@
 
     <!-- General strings -->
     <string name="action_dismiss_snackbar">Dismiss</string>
+    <string name="share_with_title">Share with:</string>
 
     <!-- MainActivity strings -->
     <string name="dialog_logout_message">,\u0020you want to logout?</string>

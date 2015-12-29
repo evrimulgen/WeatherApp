@@ -61,6 +61,13 @@ public class WeatherContract {
                 COLUMN_DESCRIPTION
         };
 
+        public static final String[] SHARE_PROJECTION = {
+                TABLE_NAME + "." + _ID,
+                COLUMN_DATESTAMP,
+                COLUMN_DAYTEMPERATURE,
+                COLUMN_DESCRIPTION
+        };
+
         public static Uri buildHamstersUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }

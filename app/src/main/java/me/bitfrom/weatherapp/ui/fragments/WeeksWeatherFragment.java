@@ -17,12 +17,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
+import butterknife.BindString;
 import me.bitfrom.weatherapp.R;
 import me.bitfrom.weatherapp.ui.BaseFragment;
 import me.bitfrom.weatherapp.ui.recyclerview.DividerItemDecoration;
 import me.bitfrom.weatherapp.ui.recyclerview.EmptyRecyclerView;
 import me.bitfrom.weatherapp.ui.recyclerview.ForecastRVAdapter;
+import me.bitfrom.weatherapp.ui.recyclerview.RecyclerItemClickListener;
 import me.bitfrom.weatherapp.utils.NetworkStateChecker;
+import me.bitfrom.weatherapp.utils.ShareUtility;
 
 import static me.bitfrom.weatherapp.database.WeatherContract.WeatherEntry;
 
@@ -36,7 +39,8 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
     protected EmptyRecyclerView weatherForecast;
     @Bind(R.id.forecast_list_empty)
     protected TextView emptyView;
-
+    @BindString(R.string.share_with_title)
+    protected String shareWithTitle;
 
     private static final int FORECAST_LOADER = 1;
     private ForecastRVAdapter recyclerViewAdapter;
@@ -98,6 +102,23 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
         recyclerViewAdapter = new ForecastRVAdapter(getActivity(), null, 0);
         weatherForecast.setEmptyView(emptyView);
         weatherForecast.setAdapter(recyclerViewAdapter);
+
+        weatherForecast.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
+                new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Uri uri = WeatherEntry.buildHamstersUri(recyclerViewAdapter.getItemId(position));
+                Cursor cursor = getActivity().getContentResolver().query(uri, WeatherEntry.SHARE_PROJECTION, null, null, null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    String date = cursor.getString(cursor.getColumnIndex(WeatherEntry.COLUMN_DATESTAMP));
+                    String dayTemp = cursor.getString(cursor.getColumnIndex(WeatherEntry.COLUMN_DAYTEMPERATURE));
+                    String description = cursor.getString(cursor.getColumnIndex(WeatherEntry.COLUMN_DESCRIPTION));
+                    ShareUtility.getShareActions(getActivity(), date, dayTemp, description)
+                            .title(shareWithTitle).show();
+                    cursor.close();
+                }
+            }
+        }));
     }
 
     /***
