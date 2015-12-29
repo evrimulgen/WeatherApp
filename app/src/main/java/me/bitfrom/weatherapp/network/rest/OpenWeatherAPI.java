@@ -16,4 +16,11 @@ public interface OpenWeatherAPI {
                                         @Query("units") String units,
                                         @Query("cnt") String days,
                                         @Query("appid") String appId);
+
+    @GET(RequestsKeeper.DAILY)
+    Observable<WeatherModel> getWeatherWithLocation(@Query("lat") String lat,
+                                                    @Query("lon") String lon,
+                                                    @Query("units") String units,
+                                                    @Query("cnt") String days,
+                                                    @Query("appid") String appId);
 }

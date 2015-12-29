@@ -46,6 +46,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_location_key)));
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_frequency_of_updates_key)));
 
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -54,8 +55,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         String stringValue = newValue.toString();
-
-
+        
         if (preference instanceof ListPreference) {
             // For list preferences, look up the correct display value in the preference's 'entries' list (since they have separate labels/values).
             ListPreference listPreference = (ListPreference) preference;

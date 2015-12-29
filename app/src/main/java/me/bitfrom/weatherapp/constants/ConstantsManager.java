@@ -35,4 +35,8 @@ public class ConstantsManager {
 
     public static final int NOTIFICATION_ID = 1024;
 
+    public static final String USER_LAT = "user_lat";
+
+    public static final String USER_LON = "user_lon";
+
 }

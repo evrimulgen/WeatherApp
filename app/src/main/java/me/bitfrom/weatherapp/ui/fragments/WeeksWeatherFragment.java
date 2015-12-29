@@ -130,7 +130,13 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
             @Override
             public void onRefresh() {
                 if (NetworkStateChecker.isNetworkAvailable(getActivity())) {
-                    dataLoaderWeapon.loadWeatherData();
+                    //The lat and lon not setted, use "default" location
+                    if (preferences.getLastKnownLatitude().equalsIgnoreCase("1")) {
+                        dataLoaderWeapon.loadWeatherData();
+                    } else {
+                        dataLoaderWeapon.loadWeatherDataUsingLocation(preferences.getLastKnownLatitude(),
+                                preferences.getLastKnownLongitude());
+                    }
                 } else {
                     messageHandlerUtility.showMessage(relativeLayout, errorCheckNetwork,
                             Snackbar.LENGTH_LONG);

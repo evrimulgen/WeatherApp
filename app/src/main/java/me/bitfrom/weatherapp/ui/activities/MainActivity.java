@@ -56,6 +56,8 @@ public class MainActivity extends BaseActivity
 
         setupDrawer();
 
+        //startService(new Intent(this, LocationPullerService.class));
+
         checkIfUserLogged();
 
         if (savedInstanceState == null) {
