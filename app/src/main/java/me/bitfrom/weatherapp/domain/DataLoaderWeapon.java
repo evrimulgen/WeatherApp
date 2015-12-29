@@ -50,6 +50,35 @@ public class DataLoaderWeapon {
                 });
     }
 
+    /***
+     * Uses user location to load data from the server and passe it into DataSaverWeapons hands
+     * @param lat users latitude
+     * @param lon users longitude
+     ***/
+    public void loadWeatherDataUsingLocation(String lat, String lon) {
+        subscription = loadService.getWeatherWithLocation(lat, lon)
+                .subscribeOn(Schedulers.io())
+                .cache()
+                .subscribe(new Observer<WeatherModel>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (BuildConfig.DEBUG) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(WeatherModel weatherModel) {
+                        saverWeapon.saveData(weatherModel);
+                    }
+                });
+    }
+
     public void hideWeapon() {
         if (subscription != null) subscription.unsubscribe();
     }

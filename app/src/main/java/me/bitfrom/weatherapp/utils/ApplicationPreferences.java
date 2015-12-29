@@ -53,4 +53,20 @@ public class ApplicationPreferences {
         return preferences.getString(ConstantsManager.FACEBOOK_USER_PICTURE, "");
     }
 
+    public void setLastKnownLatitude(double lat) {
+        preferences.edit().putString(ConstantsManager.USER_LAT, String.valueOf(lat)).apply();
+    }
+
+    public String getLastKnownLatitude() {
+        return preferences.getString(ConstantsManager.USER_LAT, "1");
+    }
+
+    public void setLastKnownLongitude(double lon) {
+        preferences.edit().putString(ConstantsManager.USER_LON, String.valueOf(lon)).apply();
+    }
+
+    public String getLastKnownLongitude() {
+        return preferences.getString(ConstantsManager.USER_LON, "1");
+    }
+
 }

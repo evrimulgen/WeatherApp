@@ -66,8 +66,13 @@
     <string name="about_developer_name">Developed by Constantine Chernenko.</string>
     <string name="about_snack_okay">Okay</string>
 
-    <!--Settings for frequency of updates-->
 
+    <!--Location settings-->
+    <string name="pref_location_label">Location</string>
+    <string name="pref_location_key" translatable="false">location</string>
+    <string name="pref_location_default" translatable="false">Kiev</string>
+
+    <!--Settings for frequency of updates-->
     <!-- Label for the frequency of updates preference -->
     <string name="pref_frequency_of_updates_label">Update</string>
     <!--Label for every half/day updates preference-->

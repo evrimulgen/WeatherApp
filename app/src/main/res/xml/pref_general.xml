@@ -6,6 +6,13 @@
     <PreferenceCategory
         android:title="@string/pref_general_section">
 
+        <EditTextPreference
+            android:title="@string/pref_location_label"
+            android:key="@string/pref_location_key"
+            android:defaultValue="@string/pref_location_default"
+            android:inputType="text"
+            android:singleLine="true"/>
+
         <ListPreference
             android:key="@string/pref_frequency_of_updates_key"
             android:title="@string/pref_frequency_of_updates_label"

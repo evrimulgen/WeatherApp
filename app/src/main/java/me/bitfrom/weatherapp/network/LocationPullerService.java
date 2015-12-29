@@ -11,14 +11,26 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 
+import javax.inject.Inject;
+
 import me.bitfrom.weatherapp.BuildConfig;
+import me.bitfrom.weatherapp.WeatherApplication;
+import me.bitfrom.weatherapp.utils.ApplicationPreferences;
 import timber.log.Timber;
 
 public class LocationPullerService extends Service {
 
+    @Inject
+    protected ApplicationPreferences preferences;
+
     private LocationManager mLocationManager = null;
     private static final int LOCATION_INTERVAL = 86400000;
     private static final float LOCATION_DISTANCE = 10000f;
+
+    public LocationPullerService() {
+        super();
+        WeatherApplication.appComponent().inject(this);
+    }
 
     private class LocationListener implements android.location.LocationListener {
         Location mLastLocation;
@@ -26,12 +38,16 @@ public class LocationPullerService extends Service {
         public LocationListener(String provider) {
             if (BuildConfig.DEBUG) Timber.d("LocationListener " + provider);
             mLastLocation = new Location(provider);
+            preferences.setLastKnownLatitude(mLastLocation.getLatitude());
+            preferences.setLastKnownLongitude(mLastLocation.getLongitude());
         }
 
         @Override
         public void onLocationChanged(Location location) {
             if (BuildConfig.DEBUG) Timber.d("onLocationChanged: " + location);
             mLastLocation.set(location);
+            preferences.setLastKnownLatitude(location.getLatitude());
+            preferences.setLastKnownLongitude(location.getLongitude());
         }
 
         @Override
