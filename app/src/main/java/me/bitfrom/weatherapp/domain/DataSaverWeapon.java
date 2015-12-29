@@ -23,6 +23,8 @@ public class DataSaverWeapon {
 
     @Inject
     protected Context context;
+    @Inject
+    protected NotificationWeapon notificationWeapon;
 
     public DataSaverWeapon() {
         WeatherApplication.appComponent().inject(this);
@@ -85,6 +87,7 @@ public class DataSaverWeapon {
                 Timber.d(cvList.size() + " values inserted.");
             }
             //No need after inserting values into the database
+            notificationWeapon.updateNotifications();
             cvList.clear();
         }
     }

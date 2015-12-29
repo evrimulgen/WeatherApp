@@ -33,4 +33,6 @@ public class ConstantsManager {
 
     public static final String APP_HASHTAG = "#WeatherApp";
 
+    public static final int NOTIFICATION_ID = 1024;
+
 }

@@ -17,6 +17,7 @@
             android:title="@string/drawer_item_about" />
     </group>
 
+    <group android:checkableBehavior="single">
     <item android:title="@string/drawer_category">
         <menu>
             <item
@@ -29,5 +30,6 @@
                 android:title="@string/drawer_item_logout" />
         </menu>
     </item>
+    </group>
 
 </menu>

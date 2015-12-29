@@ -167,6 +167,9 @@ public class MainActivity extends BaseActivity
         } else if (fragmentClassName.equals(AboutFragment.class.getName())) {
             setTitle(getString(R.string.about_fragment_title));
             navigationView.setCheckedItem(R.id.nav_about);
+        } else if (fragmentClassName.equals(SettingsFragment.class.getName())) {
+            setTitle(getString(R.string.settings_fragment_title));
+            navigationView.setCheckedItem(R.id.nav_settings);
         }
     }
 

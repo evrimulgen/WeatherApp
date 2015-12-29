@@ -108,6 +108,7 @@ public class WeeksWeatherFragment extends BaseFragment implements LoaderManager.
             @Override
             public void onItemClick(View view, int position) {
                 Uri uri = WeatherEntry.buildHamstersUri(recyclerViewAdapter.getItemId(position));
+                //I know it's a bad thing, but ContentProvider is too old to deal with async((
                 Cursor cursor = getActivity().getContentResolver().query(uri, WeatherEntry.SHARE_PROJECTION, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
                     String date = cursor.getString(cursor.getColumnIndex(WeatherEntry.COLUMN_DATESTAMP));
