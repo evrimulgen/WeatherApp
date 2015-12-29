@@ -11,6 +11,8 @@
 
     <!-- Facebook app_id -->
     <string name="facebook_app_id">1535702916748100</string>
+    <!-- Google api key -->
+    <string name="google_map_api_key">AIzaSyB_BfWeLx7KaY12THSVW2zYPWsdSUOFqqk</string>
 
     <!-- Strings for navigation drawer -->
     <string name="drawer_item_today">Today\'s weather</string>
